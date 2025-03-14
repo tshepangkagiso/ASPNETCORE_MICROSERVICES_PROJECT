@@ -1,0 +1,39 @@
+﻿@model List<Shirt>
+
+<h2>Shirts List</h2>
+
+<!-- Links or Buttons for Create and Delete actions -->
+<div>
+    <a href="@Url.Action("Create", "Shirts")" class="btn btn-success">Create New Shirt</a>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Brand</th>
+            <th>Color</th>
+            <th>Size</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var shirt in Model)
+        {
+            <tr>
+                <td>@shirt.Brand</td>
+                <td>@shirt.Color</td>
+                <td>@shirt.Size</td>
+                <td>
+                    <!-- Edit Button/Link -->
+                    <a href="@Url.Action("Edit", "Shirts", new { id = shirt.ShirtID })" class="btn btn-primary">Edit</a>
+                    
+                    <!-- Delete Button with Confirmation -->
+                    <form action="@Url.Action("Delete", "Shirts", new { id = shirt.ShirtID })" method="post" style="display:inline;">
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this shirt?')">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

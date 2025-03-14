@@ -1,0 +1,32 @@
+@ShirtsApp.Api_HostAddress = http://localhost:3000
+
+
+### GET all shirts
+GET  http://localhost:3000/shirts
+Accept: application/json
+
+### GET a specific shirt by ID
+GET  http://localhost:3000/shirts/1
+Accept: application/json
+
+### PUT update a specific shirt by ID
+PUT  http://localhost:3000/shirts/1
+Content-Type: application/json
+{
+  "shirtID": 1,
+  "brand": "Nike",
+  "color": "Red",
+  "size": 42
+}
+
+### POST create a new shirt
+POST http://localhost:3000/shirts
+Content-Type: application/json
+{
+  "brand": "Adidas",
+  "color": "Black",
+  "size": 38
+}
+
+### DELETE a specific shirt by ID
+DELETE  http://localhost:3000/shirts/1

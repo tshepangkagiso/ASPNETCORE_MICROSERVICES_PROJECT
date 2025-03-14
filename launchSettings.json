@@ -1,0 +1,13 @@
+{
+  "profiles": {
+    "Docker Compose": {
+      "commandName": "DockerCompose",
+      "commandVersion": "1.0",
+      "serviceActions": {
+        "shirtsapp.api": "StartDebugging",
+        "shirtapp": "StartDebugging",
+        "shirtapp.mvc": "StartDebugging"
+      }
+    }
+  }
+}

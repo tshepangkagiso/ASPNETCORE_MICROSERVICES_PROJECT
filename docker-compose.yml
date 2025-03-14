@@ -1,0 +1,73 @@
+networks:
+  app-network:
+    driver: bridge
+
+services:
+  shirtsapp.api:
+    image: ${DOCKER_REGISTRY-}shirtsappapi
+    build:
+      context: .
+      dockerfile: ShirtsApp.Api/Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - ASPNETCORE_URLS=http://*:3000
+      - ASPNETCORE_ENVIRONMENT=Development
+    depends_on: [mssql,seq_logs]
+    networks:
+      - app-network
+    restart: unless-stopped
+
+  shirtapp.mvc:
+    image: ${DOCKER_REGISTRY-}shirtappmvc
+    build:
+      context: .
+      dockerfile: ShirtApp/Dockerfile
+    ports:
+      - "3001:3001"
+    environment:
+      - ASPNETCORE_URLS=http://*:3001
+      - ASPNETCORE_ENVIRONMENT=Development
+    depends_on:
+      - shirtsapp.api
+    networks:
+      - app-network
+    restart: unless-stopped
+
+  mssql:
+    image: tshepangkagisomashigo/shirtsdb
+    container_name: sqlserverShirts
+    hostname: mssql
+    environment:
+      - SA_PASSWORD=myPassword1
+      - ACCEPT_EULA=Y
+    restart: unless-stopped
+    ports:
+      - "1401:1433"
+    networks:
+      - app-network
+
+  seq_logs:
+    image: datalust/seq
+    environment:
+      - ACCEPT_EULA=Y
+    restart: unless-stopped
+    ports:
+      - "5342:80"
+    networks:
+      - app-network
+
+  nginx:
+    container_name: nginx_proxy
+    build:
+        context: .
+        dockerfile: nginx/Dockerfile
+    ports:
+        - "44391:44391"
+    depends_on: [shirtsapp.api,shirtapp.mvc]
+    networks:
+      app-network:
+        aliases:
+          - "shirtsapp.mvc.com"
+          - "shirtsapp.api.com"
+    restart: always

@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35431.28
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShirtsApp.Api", "ShirtsApp.Api\ShirtsApp.Api.csproj", "{E795287C-25F2-4B0F-A5D5-48B410BE2DB8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShirtApp.Mvc", "ShirtApp\ShirtApp.Mvc.csproj", "{BD7E0B2A-2743-4789-AA56-7BBA1D992118}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{81DDED9D-158B-E303-5F62-77A2896D2A5A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nginx", "nginx", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+	ProjectSection(SolutionItems) = preProject
+		nginx\api-cert.key = nginx\api-cert.key
+		nginx\api-cert.pfx = nginx\api-cert.pfx
+		nginx\Dockerfile = nginx\Dockerfile
+		nginx\mvc-cert.conf = nginx\mvc-cert.conf
+		nginx\mvc-cert.crt = nginx\mvc-cert.crt
+		nginx\mvc-cert.key = nginx\mvc-cert.key
+		nginx\mvc-cert.pfx = nginx\mvc-cert.pfx
+		nginx\nginx.conf = nginx\nginx.conf
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "k8s", "k8s", "{BD1A25DC-2C9B-4977-BA5E-B99F891F1B46}"
+	ProjectSection(SolutionItems) = preProject
+		k8s\admin-user-cluster-role.yaml = k8s\admin-user-cluster-role.yaml
+		k8s\admin-user.yaml = k8s\admin-user.yaml
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E795287C-25F2-4B0F-A5D5-48B410BE2DB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E795287C-25F2-4B0F-A5D5-48B410BE2DB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E795287C-25F2-4B0F-A5D5-48B410BE2DB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E795287C-25F2-4B0F-A5D5-48B410BE2DB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD7E0B2A-2743-4789-AA56-7BBA1D992118}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD7E0B2A-2743-4789-AA56-7BBA1D992118}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD7E0B2A-2743-4789-AA56-7BBA1D992118}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD7E0B2A-2743-4789-AA56-7BBA1D992118}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81DDED9D-158B-E303-5F62-77A2896D2A5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81DDED9D-158B-E303-5F62-77A2896D2A5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81DDED9D-158B-E303-5F62-77A2896D2A5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81DDED9D-158B-E303-5F62-77A2896D2A5A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {748F4366-61DA-4ABF-B9BF-032CA2DCBF06}
+	EndGlobalSection
+EndGlobal
