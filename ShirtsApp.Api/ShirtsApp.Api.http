@@ -1,12 +1,12 @@
-@ShirtsApp.Api_HostAddress = http://localhost:3000
+@ShirtsApp.Api_HostAddress = http://localhost:32001
 
 
 ### GET all shirts
-GET  http://localhost:3000/shirts
+GET  http://localhost:32001/shirts
 Accept: application/json
 
 ### GET a specific shirt by ID
-GET  http://localhost:3000/shirts/1
+GET  http://localhost:32001/shirts/1
 Accept: application/json
 
 ### PUT update a specific shirt by ID

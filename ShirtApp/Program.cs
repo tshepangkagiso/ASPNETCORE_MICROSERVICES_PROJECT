@@ -12,7 +12,7 @@ builder.Host.UseSerilog((context, configuration) =>
 
 builder.Services.AddHttpClient("ShirtsApi", client =>
 {
-    client.BaseAddress = new Uri("https://shirtsapp.api.com:44391");
+    client.BaseAddress = new Uri(builder.Configuration["BaseApiUrl"] ?? string.Empty);
     client.DefaultRequestHeaders.Add("Accept", "application/json");
 });
 

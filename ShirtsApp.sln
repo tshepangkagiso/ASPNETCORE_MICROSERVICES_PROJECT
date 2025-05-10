@@ -25,6 +25,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "k8s", "k8s", "{BD1A25DC-2C9
 	ProjectSection(SolutionItems) = preProject
 		k8s\admin-user-cluster-role.yaml = k8s\admin-user-cluster-role.yaml
 		k8s\admin-user.yaml = k8s\admin-user.yaml
+		k8s\api-deployment.yaml = k8s\api-deployment.yaml
+		k8s\ingress.yml = k8s\ingress.yml
+		k8s\mssql-deployment.yaml = k8s\mssql-deployment.yaml
+		k8s\mvc-client-deployment.yaml = k8s\mvc-client-deployment.yaml
+		k8s\namespace.yaml = k8s\namespace.yaml
+		k8s\persistence-volumes.yml = k8s\persistence-volumes.yml
+		k8s\seq-deployment.yaml = k8s\seq-deployment.yaml
 	EndProjectSection
 EndProject
 Global

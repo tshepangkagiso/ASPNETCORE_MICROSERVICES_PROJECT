@@ -1,0 +1,68 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: shirtsapi
+    namespace: cloud-native-dev
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: shirtsapi
+    spec:
+      containers:
+      - name: shirtsapi
+        image: tshepangkagisomashigo/shirtsapp-api:latest
+        ports:
+        - containerPort: 80
+        env:
+        - name: ConnectionStrings__DefaultConnection
+          value: Server=mssql-svc,1434;Database=ShirtsDB;User Id=sa;Password=myPassword1;TrustServerCertificate=True;
+        - name: ASPNETCORE_URLS
+          value: http://*:80
+        - name: Serilog__WriteTo__1__Args__serverUrl
+          value: http://shirtsseq-svc
+  selector:
+    matchLabels:
+      app: shirtsapi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: shirtsapi-svc
+  namespace: cloud-native-dev
+spec:
+  type: NodePort
+  ports:
+  - port: 80
+    targetPort: 80
+    nodePort: 32001
+  selector:
+    app: shirtsapi
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: shirtsapi-scaling
+  namespace: cloud-native-dev
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: shirtsapi
+  minReplicas: 1
+  maxReplicas: 10
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 50
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        type: AverageValue
+        averageValue: 100Mi

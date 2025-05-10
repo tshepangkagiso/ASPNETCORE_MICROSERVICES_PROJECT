@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shirtssmvc
+  namespace: cloud-native-dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: shirtssmvc
+  template:
+    metadata:
+      labels:
+        app: shirtssmvc
+    spec:
+      containers:
+      - name: shirtssmvc
+        image: tshepangkagisomashigo/shirtsapp-mvc:latest
+        ports:
+        - containerPort: 80
+        env:
+        - name: ASPNETCORE_URLS
+          value: http://*:80
+        - name: BaseApiUrl
+          value: http://shirtsapi-svc
+        - name: Serilog__WriteTo__1__Args__serverUrl
+          value: http://shirtsseq-svc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: shirtssmvc-svc
+  namespace: cloud-native-dev
+spec:
+  selector:
+    app: shirtssmvc
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      nodePort: 32002
+  type: NodePort
