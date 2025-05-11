@@ -25,6 +25,8 @@ spec:
           value: http://shirtsapi-svc
         - name: Serilog__WriteTo__1__Args__serverUrl
           value: http://shirtsseq-svc
+        - name: ASPNETCORE_ENVIRONMENT
+          value: "Production"
 ---
 apiVersion: v1
 kind: Service

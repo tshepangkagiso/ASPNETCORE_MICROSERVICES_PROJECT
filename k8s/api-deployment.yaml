@@ -23,6 +23,9 @@ spec:
           value: http://*:80
         - name: Serilog__WriteTo__1__Args__serverUrl
           value: http://shirtsseq-svc
+        - name: ASPNETCORE_ENVIRONMENT
+          value: "Production"
+
   selector:
     matchLabels:
       app: shirtsapi

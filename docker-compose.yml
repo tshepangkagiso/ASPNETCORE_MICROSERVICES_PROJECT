@@ -2,6 +2,12 @@ networks:
   app-network:
     driver: bridge
 
+volumes:
+  sqlsystem:
+  sqldata:
+  sqllog:
+  sqlbackup: 
+        
 services:
   shirtsapp.api:
     image: ${DOCKER_REGISTRY-}shirtsappapi
@@ -41,11 +47,19 @@ services:
     environment:
       - SA_PASSWORD=myPassword1
       - ACCEPT_EULA=Y
+      - MSSQL_DATA_DIR=/var/opt/sqlserver/data
+      - MSSQL_LOG_DIR=/var/opt/sqlserver/log
+      - MSSQL_BACKUP_DIR=/var/opt/sqlserver/backup
     restart: unless-stopped
     ports:
       - "1401:1433"
     networks:
       - app-network
+    volumes:
+      - sqlsystem:/var/opt/mssql/
+      - sqldata:/var/opt/sqlserver/data
+      - sqllog:/var/opt/sqlserver/log
+      - sqlbackup:/var/opt/sqlserver/backup
 
   seq_logs:
     image: datalust/seq
@@ -71,3 +85,5 @@ services:
           - "shirtsapp.mvc.com"
           - "shirtsapp.api.com"
     restart: always
+
+ 
